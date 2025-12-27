@@ -134,6 +134,7 @@ class _NutritionPageState extends State<NutritionPage> {
   Widget _goalButton(String goal, IconData icon) {
     bool isSelected = selectedGoal == goal;
     return GestureDetector(
+      // Source for GestureDetector: https://api.flutter.dev/flutter/widgets/GestureDetector-class.html
       onTap: () => setState(() => selectedGoal = goal),
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
@@ -191,7 +192,8 @@ class _NutritionPageState extends State<NutritionPage> {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 4.0),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment
+            .start, // Source for CrossAxisAlignment: https://api.flutter.dev/flutter/rendering/CrossAxisAlignment.html
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -202,6 +204,7 @@ class _NutritionPageState extends State<NutritionPage> {
           ),
           const SizedBox(height: 4),
           LinearProgressIndicator(
+            // Source for LinearProgressIndicator: https://api.flutter.dev/flutter/material/LinearProgressIndicator-class.html
             value: percent,
             backgroundColor: Colors.grey[200],
             color: color,
