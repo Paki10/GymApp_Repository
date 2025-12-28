@@ -24,7 +24,7 @@ class _NutritionPageState extends State<NutritionPage> {
       length: 3,
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('Your Nutrition Goal'),
+          title: const Text('Nutrition'),
           backgroundColor: Colors.white,
           foregroundColor: Colors.black,
           elevation: 0,
