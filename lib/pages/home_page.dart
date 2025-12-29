@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'login_page.dart';
 
-// 👉 importeer je deelpagina's
+//  importeer je deelpagina's
 import 'planning_page.dart';
 import 'exercises_page.dart';
 import 'nutrition_page.dart';
 import 'settings_page.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+   HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +23,7 @@ class HomePage extends StatelessWidget {
               await FirebaseAuth.instance.signOut();
               Navigator.pushReplacement(
                 context,
-                MaterialPageRoute(builder: (_) => const LoginPage()),
+                MaterialPageRoute(builder: (_) => LoginPage()),
               );
             },
           ),
@@ -69,7 +69,7 @@ class HomePage extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (_) => const PlanningPage(),
+                          builder: (_) =>  PlanningPage(),
                         ),
                       );
                     },
@@ -82,7 +82,7 @@ class HomePage extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (_) => const ExercisesPage(),
+                          builder: (_) =>  ExercisesPage(),
                         ),
                       );
                     },
@@ -95,7 +95,7 @@ class HomePage extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (_) => const NutritionPage(),
+                          builder: (_) =>  NutritionPage(),
                         ),
                       );
                     },
@@ -108,7 +108,7 @@ class HomePage extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (_) => const SettingsPage(),
+                          builder: (_) =>  SettingsPage(),
                         ),
                       );
                     },
