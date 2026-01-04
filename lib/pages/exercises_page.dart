@@ -1,4 +1,8 @@
+
 import 'package:flutter/material.dart';
+import '../widgets/app_bottom_navigation.dart';
+
+
 
 // Docs: https://api.flutter.dev/flutter/widgets/StatefulWidget-class.html
 class ExercisesPage extends StatefulWidget {
@@ -112,8 +116,12 @@ class _ExercisesPageState extends State<ExercisesPage> {
               ],
             ),
           ],
+          
         ),
       ),
+      bottomNavigationBar:AppBottomNavigation(
+            currentIndex: 1,
+           )
     );
   }
 
@@ -344,6 +352,7 @@ class _ExercisesPageState extends State<ExercisesPage> {
             ),
           ),
         ],
+        
       ),
     );
   }

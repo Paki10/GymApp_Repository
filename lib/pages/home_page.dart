@@ -101,6 +101,20 @@ class _HomePageState extends State<HomePage> {
           },
         ),
 
+        //Logo in lidden
+
+        title: ClipRRect(
+          borderRadius: BorderRadius.circular(12), // maakt het logo zachter
+          child: Image.asset(
+            'assets/GymApp_Screen.png',
+            height: 42,
+            fit: BoxFit.contain,
+          ),
+        ),
+        centerTitle: true,
+
+
+
         // Dropdown (nu aparte widget)
         actions: [
           MenuDropdown(
