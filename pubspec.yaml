@@ -31,10 +31,12 @@ dependencies:
 
   flutter:
     sdk: flutter
+      
+
 
   firebase_core: ^3.15.2
   firebase_auth: ^5.7.0
-  cloud_firestore: ^5.4.0
+  cloud_firestore: ^5.6.12
   cupertino_icons: ^1.0.8
   url_launcher: ^6.2.5
 
@@ -61,6 +63,16 @@ flutter:
 
   assets:
     - assets/GymApp_Screen.png
+    - assets/GriekseYoghurt.png
+    - assets/HavermoutMetBanaan.png
+    - assets/KipSalade.png
+    - assets/PastaGehakt.png
+    - assets/WrapTonijn.png
+    - assets/ZalmEnAardappel.png
+    - assets/legs_workout.png
+    - assets/home_workout.png
+    - assets/chest_workout.png
+    - assets/back_workout.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
 
