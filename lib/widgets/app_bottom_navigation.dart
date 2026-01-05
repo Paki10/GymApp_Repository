@@ -12,7 +12,7 @@ class AppBottomNavigation extends StatelessWidget {
     super.key,
     required this.currentIndex,
   });
-
+//De doel van dit stuk code is dan het eigenlijk toegang geeft naar de verschillede pagina's, zodat ik niet continu de dropdown menu ga moeten gaan gebruken
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(

@@ -8,7 +8,7 @@ class HomeNutrition extends StatelessWidget {
     super.key,
     required this.nutritions,
   });
-
+//Zorgt voor de meal lay)out op de homme pagina
   @override
   Widget build(BuildContext context) {
     return Padding(

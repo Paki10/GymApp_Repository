@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-
+//zorgt voor de menu bar dus lay-out zowel als de icoontjes 
+//https://api.flutter.dev/flutter/material/Icons-class.html
+//https://fonts.google.com/icons
 class MenuDropdown extends StatelessWidget {
   final Function(String) onSelected;
 

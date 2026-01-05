@@ -18,7 +18,7 @@ class HomeCalendar extends StatelessWidget {
     required this.daysInMonth,
     required this.onDayTap,
   });
-
+//zorgt voor de lay-out van de calender, de berekeningen en maken van calender word gedaan in de homepage
   @override
   Widget build(BuildContext context) {
     return Padding(
