@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gym_app1/widgets/app_bottom_navigation.dart';
 
 class NutritionPage extends StatefulWidget {
   const NutritionPage({super.key});
@@ -125,6 +126,7 @@ class _NutritionPageState extends State<NutritionPage> {
             ),
           ],
         ),
+        bottomNavigationBar: AppBottomNavigation(currentIndex: 2),
       ),
     );
   }
