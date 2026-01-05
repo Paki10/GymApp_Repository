@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:gym_app1/pages/change_password_page.dart';
 import 'package:gym_app1/pages/profile_page.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'login_page.dart';
+import 'package:gym_app1/pages/support_email_page.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({super.key});
@@ -148,14 +148,16 @@ class _SettingsPageState extends State<SettingsPage> {
               leading: const Icon(Icons.help_outline),
               title: const Text('Info request'),
               subtitle: const Text('Send us an email'),
-              onTap: () async {
-                final Uri emailUri = Uri(
-                  scheme: 'mailto',
-                  path: 'shah10ak@yahoo.com',
-                  query: 'subject=Gym App Info Request',
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => const SupportEmailPage(
+                      title: 'Info Request',
+                      defaultSubject: 'Gym App Info Request',
+                    ),
+                  ),
                 );
-
-                await launchUrl(emailUri);
               },
             ),
 

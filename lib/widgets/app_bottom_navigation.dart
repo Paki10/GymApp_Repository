@@ -16,6 +16,7 @@ class AppBottomNavigation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
+      //Zorgt ervoor dat de navigatiebar niet beweegd, dat het vast blijft
       type: BottomNavigationBarType.fixed,
       currentIndex: currentIndex,
       selectedItemColor: const Color(0xFF6A7CFF),
