@@ -35,13 +35,21 @@ class MacroCard extends StatelessWidget {
     );
   }
 
+  // FUNCTIE: _macroBar
+  // DOEL: Het bouwen van een label (bijv. 'Protein') met een percentage en een voortgangsbalk.
+  // PARAMETERS:
+  // - label: De tekst die linksboven de balk staat.
+  // - percent: Een getal tussen 0.0 en 1.0 dat de lengte van de balk bepaalt.
+  // - color: De kleur die de balk krijgt (rood, blauw of oranje).
   Widget _macroBar(String label, double percent, Color color) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 4.0),
       child: Column(
+        // crossAxisAlignment.start: Zorgt dat de tekst en de balk allemaal strak aan de LINKERKANT beginnen.
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
+            // mainAxisAlignment.spaceBetween: Duwt de tekst (label) naar links en het percentage naar rechts.
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(label, style: const TextStyle(fontSize: 12)),

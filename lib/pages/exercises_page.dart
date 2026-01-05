@@ -1,18 +1,9 @@
 import 'package:flutter/material.dart';
 import '../widgets/app_bottom_navigation.dart';
+import '../widgets/workout_card.dart'; // Zorg dat dit bestand bestaat in je widgets map
 
-// Docs: https://api.flutter.dev/flutter/widgets/StatefulWidget-class.html
-class ExercisesPage extends StatefulWidget {
+class ExercisesPage extends StatelessWidget {
   const ExercisesPage({super.key});
-
-  @override
-  State<ExercisesPage> createState() => _ExercisesPageState();
-}
-
-class _ExercisesPageState extends State<ExercisesPage> {
-  // We houden een Set bij van titels van kaarten die uitgeklapt zijn
-  // Docs: https://dart.dev/guides/language/language-tour#sets
-  final Set<String> _expandedCards = {};
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +19,7 @@ class _ExercisesPageState extends State<ExercisesPage> {
         centerTitle: false,
       ),
       body: SingleChildScrollView(
-        // Source for SingelCHildSCrollView: https://api.flutter.dev/flutter/widgets/SingleChildScrollView-class.html
+        // SingleChildScrollView zorgt ervoor dat de pagina scrollbaar is:
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -39,13 +30,13 @@ class _ExercisesPageState extends State<ExercisesPage> {
             ),
             const SizedBox(height: 20),
 
-            // 1. Chest & Triceps
-            _buildWorkoutCard(
+            // 1. Chest & Triceps Card
+            const WorkoutCard(
               title: 'Chest & Triceps',
               duration: '60 min',
               level: 'Intermediate',
               calories: '450 kcal',
-              color: Colors.blue[600]!,
+              color: Color(0xFF1E88E5), // Colors.blue[600]
               imagePath: 'assets/chest_workout.png',
               exercises: [
                 {'name': 'Bench Press', 'sets': '4x10'},
@@ -57,13 +48,13 @@ class _ExercisesPageState extends State<ExercisesPage> {
               ],
             ),
 
-            // 2. Back & Biceps
-            _buildWorkoutCard(
+            // 2. Back & Biceps Card
+            const WorkoutCard(
               title: 'Back & Biceps',
               duration: '65 min',
               level: 'Intermediate',
               calories: '480 kcal',
-              color: Colors.green[600]!,
+              color: Color(0xFF43A047), // Colors.green[600]
               imagePath: 'assets/back_workout.png',
               exercises: [
                 {'name': 'Pull-ups', 'sets': '4x8'},
@@ -75,13 +66,13 @@ class _ExercisesPageState extends State<ExercisesPage> {
               ],
             ),
 
-            // 3. Legs, Abs & Forearms
-            _buildWorkoutCard(
+            // 3. Legs, Abs & Forearms Card
+            const WorkoutCard(
               title: 'Legs, Abs & Forearms',
               duration: '70 min',
               level: 'Advanced',
               calories: '600 kcal',
-              color: Colors.purple[600]!,
+              color: Color(0xFF8E24AA), // Colors.purple[600]
               imagePath: 'assets/legs_workout.png',
               exercises: [
                 {'name': 'Squats', 'sets': '4x10'},
@@ -94,13 +85,13 @@ class _ExercisesPageState extends State<ExercisesPage> {
               ],
             ),
 
-            // 4. Home Training
-            _buildWorkoutCard(
+            // 4. Home Training Card
+            const WorkoutCard(
               title: 'Home Training',
               duration: '45 min',
               level: 'Beginner',
               calories: '300 kcal',
-              color: Colors.orange[800]!,
+              color: Color(0xFFE65100),
               imagePath: 'assets/home_workout.png',
               exercises: [
                 {'name': 'Push-ups', 'sets': '4x15'},
@@ -116,237 +107,6 @@ class _ExercisesPageState extends State<ExercisesPage> {
         ),
       ),
       bottomNavigationBar: AppBottomNavigation(currentIndex: 1),
-    );
-  }
-
-  Widget _buildWorkoutCard({
-    required String title,
-    required String duration,
-    required String level,
-    required String calories,
-    required Color color,
-    required String imagePath,
-    required List<Map<String, String>> exercises,
-  }) {
-    // Check of deze kaart momenteel is uitgeklapt
-    bool isExpanded = _expandedCards.contains(title);
-
-    // Toon alle oefeningen als het is uitgeklapt, anders de eerste 4
-    // Docs: https://api.flutter.dev/flutter/dart-core/Iterable/take.html
-    final displayedExercises = isExpanded
-        ? exercises
-        : exercises.take(4).toList();
-
-    return Container(
-      margin: const EdgeInsets.only(bottom: 24),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(20),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.05),
-            blurRadius: 10,
-            offset: const Offset(0, 5),
-          ),
-        ],
-      ),
-      child: Column(
-        children: [
-          // Header
-          Container(
-            padding: const EdgeInsets.all(16),
-            decoration: BoxDecoration(
-              color: color,
-              borderRadius: const BorderRadius.vertical(
-                top: Radius.circular(20),
-              ),
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Row(
-                      children: [
-                        const Icon(
-                          Icons.fitness_center,
-                          color: Colors.white,
-                          size: 20,
-                        ),
-                        const SizedBox(width: 8),
-                        Text(
-                          title,
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 18,
-                          ),
-                        ),
-                      ],
-                    ),
-                    const Icon(
-                      Icons.arrow_forward_ios,
-                      color: Colors.white,
-                      size: 16,
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 8),
-                Row(
-                  children: [
-                    Text(
-                      '$duration  •  ',
-                      style: const TextStyle(
-                        color: Colors.white70,
-                        fontSize: 12,
-                      ),
-                    ),
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 8,
-                        vertical: 2,
-                      ),
-                      decoration: BoxDecoration(
-                        color: Colors.white24,
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: Text(
-                        level,
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 10,
-                        ),
-                      ),
-                    ),
-                    Text(
-                      '  •  ${exercises.length} exercises',
-                      style: const TextStyle(
-                        color: Colors.white70,
-                        fontSize: 12,
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
-
-          // Afbeelding
-          SizedBox(
-            height: 150,
-            width: double.infinity,
-            child: Image.asset(
-              imagePath,
-              fit: BoxFit.cover,
-              errorBuilder: (context, error, stackTrace) => Container(
-                color: Colors.grey[300],
-                child: const Icon(Icons.image),
-              ),
-            ),
-          ),
-
-          // Oefeningen Lijst
-          Padding(
-            padding: const EdgeInsets.all(16),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Text(
-                  "Exercise List",
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
-                ),
-                const SizedBox(height: 12),
-                // We mappen door de 'displayedExercises' variabele
-                ...displayedExercises.asMap().entries.map((entry) {
-                  int idx = entry.key + 1;
-                  var ex = entry.value;
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 8.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Row(
-                          children: [
-                            CircleAvatar(
-                              radius: 12,
-                              backgroundColor: Colors.grey[100],
-                              child: Text(
-                                '$idx',
-                                style: const TextStyle(
-                                  fontSize: 10,
-                                  color: Colors.black,
-                                ),
-                              ),
-                            ),
-                            const SizedBox(width: 12),
-                            Text(
-                              ex['name']!,
-                              style: const TextStyle(fontSize: 14),
-                            ),
-                          ],
-                        ),
-                        Text(
-                          ex['sets']!,
-                          style: const TextStyle(
-                            color: Colors.grey,
-                            fontSize: 12,
-                          ),
-                        ),
-                      ],
-                    ),
-                  );
-                }).toList(),
-
-                // De interactieve knop
-                if (exercises.length > 4)
-                  Center(
-                    child: TextButton(
-                      onPressed: () {
-                        // Source for setState: https://api.flutter.dev/flutter/widgets/State/setState.html
-                        setState(() {
-                          if (isExpanded) {
-                            _expandedCards.remove(title);
-                          } else {
-                            _expandedCards.add(title);
-                          }
-                        });
-                      },
-                      child: Text(
-                        isExpanded
-                            ? "Show less"
-                            : "+${exercises.length - 4} more exercises",
-                        style: const TextStyle(
-                          color: Colors.blue,
-                          fontSize: 12,
-                        ),
-                      ),
-                    ),
-                  ),
-
-                const Divider(),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Icon(
-                      Icons.local_fire_department,
-                      color: Colors.orange,
-                      size: 16,
-                    ),
-                    Text(
-                      " Est. Burn: $calories",
-                      style: const TextStyle(
-                        fontSize: 12,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
     );
   }
 }
