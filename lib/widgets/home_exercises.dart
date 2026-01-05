@@ -78,13 +78,14 @@ class HomeExercises extends StatelessWidget {
                               style: const TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 16,
+                                
                               ),
                             ),
-                            const SizedBox(height: 4),
+                            const SizedBox(height: 10),
                             Text(
                               exercise['info']!,
                               style: const TextStyle(
-                                color: Colors.grey,
+                                color: Colors.black,
                                 fontSize: 13,
                               ),
                             ),

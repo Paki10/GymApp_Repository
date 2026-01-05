@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-
+//zorgt voor de menu bar dus lay-out zowel als de icoontjes 
+//https://api.flutter.dev/flutter/material/Icons-class.html
+//https://fonts.google.com/icons
 class MenuDropdown extends StatelessWidget {
   final Function(String) onSelected;
 
@@ -11,22 +13,41 @@ class MenuDropdown extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PopupMenuButton<String>(
-      icon: const Icon(Icons.menu),
+      icon: const Icon(Icons.menu, color: Colors.white),
       onSelected: onSelected,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(16),
+      ),
+      elevation: 8,
       itemBuilder: (context) => [
-        _menuItem('Home', 'home'),
-        _menuItem('Workouts', 'workouts'),
-        _menuItem('Nutrition', 'nutrition'),
-        _menuItem('Settings', 'settings'),
+        _menuItem(Icons.home, 'Home', 'home'),
+        _menuItem(Icons.fitness_center, 'Workouts', 'workouts'),
+        _menuItem(Icons.restaurant, 'Nutrition', 'nutrition'),
+        _menuItem(Icons.settings, 'Settings', 'settings'),
       ],
     );
   }
 
   // aparte methode = leesbaarder
-  PopupMenuItem<String> _menuItem(String text, String value) {
+  PopupMenuItem<String> _menuItem(
+    IconData icon,
+    String text,
+    String value,
+  ) {
     return PopupMenuItem<String>(
       value: value,
-      child: Text(text),
+      child: Row(
+        children: [
+          Icon(icon, color: Colors.blue),
+          const SizedBox(width: 12),
+          Text(
+            text,
+            style: const TextStyle(
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

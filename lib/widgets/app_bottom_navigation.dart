@@ -12,10 +12,11 @@ class AppBottomNavigation extends StatelessWidget {
     super.key,
     required this.currentIndex,
   });
-
+//De doel van dit stuk code is dan het eigenlijk toegang geeft naar de verschillede pagina's, zodat ik niet continu de dropdown menu ga moeten gaan gebruken
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
+      //Zorgt ervoor dat de navigatiebar niet beweegd, dat het vast blijft
       type: BottomNavigationBarType.fixed,
       currentIndex: currentIndex,
       selectedItemColor: const Color(0xFF6A7CFF),

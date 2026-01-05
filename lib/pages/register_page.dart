@@ -17,7 +17,7 @@ class RegisterPage extends StatelessWidget {
         padding: const EdgeInsets.all(16),
         child: Column(
           children: [
-            // NAAM
+            // Naam
             TextField(
               controller: nameController,
               decoration: const InputDecoration(labelText: 'Name'),
@@ -25,7 +25,7 @@ class RegisterPage extends StatelessWidget {
 
             const SizedBox(height: 16),
 
-            // EMAIL
+            // veld
             TextField(
               controller: emailController,
               decoration: const InputDecoration(labelText: 'Email'),
@@ -33,7 +33,7 @@ class RegisterPage extends StatelessWidget {
 
             const SizedBox(height: 16),
 
-            // PASSWORD
+            // wachtwoord
             TextField(
               controller: passwordController,
               obscureText: true,
@@ -52,7 +52,7 @@ class RegisterPage extends StatelessWidget {
                     password: passwordController.text,
                   );
 
-                  // NAAM opslaan in FirebaseAuth
+                  // slaagt de naam o^p in firebase
                   await credential.user!.updateDisplayName(
                     nameController.text,
                   );

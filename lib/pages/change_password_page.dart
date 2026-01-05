@@ -23,6 +23,7 @@ class ChangePasswordPage extends StatelessWidget {
           children: [
             TextField(
               controller: currentPasswordController,
+              //https://api.flutter.dev/flutter/material/TextField/obscureText.html
               obscureText: true,
               decoration: const InputDecoration(
                 labelText: 'Current password',
@@ -39,18 +40,42 @@ class ChangePasswordPage extends StatelessWidget {
             const SizedBox(height: 24),
             ElevatedButton(
               onPressed: () async {
-                try {
-                  final user = FirebaseAuth.instance.currentUser!;
-                  final email = user.email!;
+                // validatie om te checken of dat alles goed is ingevuld
+                if (currentPasswordController.text.isEmpty ||
+                    newPasswordController.text.isEmpty) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text('Please fill in all fields'),
+                    ),
+                  );
+                  return;
+                }
 
+                try {
+                  // huidige gebruiker ophalen, zodat firebase weet over welke gebruiker het gaat
+                  final user = FirebaseAuth.instance.currentUser;
+                  if (user == null) {
+                    throw FirebaseAuthException(
+                      code: 'no-user',
+                      message: 'No user logged in',
+                    );
+                  }
+
+                  final email = user.email!;
+                  
+                  // credential maken met huidig wachtwoord, ook voor firebase
                   final credential = EmailAuthProvider.credential(
                     email: email,
                     password: currentPasswordController.text,
                   );
 
+                  //verplicht bij gevoelige acties
                   await user.reauthenticateWithCredential(credential);
+
+                  // nieuw wachtwoord instellen
                   await user.updatePassword(
-                      newPasswordController.text);
+                    newPasswordController.text,
+                  );
 
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(
@@ -58,11 +83,34 @@ class ChangePasswordPage extends StatelessWidget {
                     ),
                   );
 
+                  // terug naar vorige pagina
                   Navigator.pop(context);
-                } catch (exception) {
+                } on FirebaseAuthException catch (e) {
+                  // duidelijke foutmeldingen
+                  String message = 'Password change failed';
+
+                  if (e.code == 'wrong-password') {
+                    message = 'Current password is incorrect';
+                  } else if (e.code == 'weak-password') {
+                    message = 'New password is too weak';
+                  } else if (e.code == 'requires-recent-login') {
+                    message =
+                        'Please log in again before changing your password';
+                  }
+
+                  // debug tester
+                  debugPrint('FirebaseAuth error: ${e.code}');
+                  debugPrint('FirebaseAuth message: ${e.message}');
+
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text(message)),
+                  );
+                } catch (e) {
+                  // fallback voor onverwachte fouten
+                  debugPrint('Unknown error: $e');
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(
-                      content: Text('Password change failed'),
+                      content: Text('Something went wrong'),
                     ),
                   );
                 }
