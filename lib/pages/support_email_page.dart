@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
-
+//Ik heb dit page eigenlijk gemaakt voor de support sectie, zodat als iemand een probleem heeft dat die ons kon coontacteren, op een specifieke manier.
+//Omdat flutter niet zonder een backend of mailserver niet 100% kan checken of dat een mail verzonden is of niet.
+//daarom heb ik het gewoon simpel gehouden met wat vooraf informatie. Ik denk wel dat ik het in de toekomst ga uitbereiden
 class SupportEmailPage extends StatefulWidget {
   final String title;
   final String defaultSubject;
